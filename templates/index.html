@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+
+{% load static %}
+
+
+{% block titulo %}
+
+<title>Teste-Index</title>
+
+{% endblock titulo %}
+
+
+{% block aftercss %}
+
+<link href="{% static 'fullcalendar/main.css' %}" rel='stylesheet' />
+
+{% endblock aftercss %}
+
+
+{% block conteudo %}
+
+<h1 class="h3 mb-4 text-gray-800">Index - Testando... FullCalendar seco</h1>
+<!-- calendario -->
+<div id='calendar'></div>
+
+{% endblock conteudo %}
+
+
+{% block afterjs %}
+
+<!-- full calendar js -->
+<script src="{% static 'fullcalendar/main.js' %}"></script>
+<script src="{% static 'fullcalendar/locales-all.js' %}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var calendarUl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarUl, {
+            headerToolbar: {
+                left: 'prev, next, today',
+                center: 'title',
+                right: 'dayGridMonth, listYear'
+            },
+        });
+
+        calendar.render();
+        calendar.setOption('locale', 'pt-br');
+    });
+</script>
+
+{% endblock afterjs %}

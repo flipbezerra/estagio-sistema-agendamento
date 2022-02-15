@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+
+{% load static %}
+
+
+{% block titulo %}
+
+<title>Teste Index</title>
+
+{% endblock titulo %}
+
+
+{% load crispy_forms_tags %}
+
+
+{% block conteudo %}
+
+{% if object.pk %}
+<i class="h3 mb-4 text-gray-800">Editando Cadastro</i>
+{% else %}
+<i class="h3 mb-4 text-gray-800">Cadastro de eventos</i>
+{% endif %}
+
+<form method="POST" action="">
+	{% csrf_token %}
+
+	{{ form | crispy }}
+
+	<div class="text-right">
+		<button type="submit" class="save btn btn-success">Salvar</button>
+	</div>
+</form>
+
+{% endblock conteudo %}

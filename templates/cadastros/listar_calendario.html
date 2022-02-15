@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+
+{% load static %}
+
+
+{% block titulo %}
+
+<title>Teste Index</title>
+
+{% endblock titulo %}
+
+
+{% block aftercss %}
+
+<!-- bootstrap 4.3.1 css -->
+<link href="{% static 'fullcalendar/main.css' %}" rel='stylesheet' />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+{% endblock aftercss %}
+
+
+{% block conteudo %}
+
+<h1 class="h3 mb-4 text-gray-800">Testando... FullCalendar com b4</h1>
+<!-- calendario -->
+<div id="calendar" class="card" style="pading: 2%"></div>
+<!-- checar valores -->
+{% for item in object_list %}
+titulo: {{ item.title }}
+<br>
+inicio/fim: {{ item.start }} || {{ item.end }}
+<br>
+descrição: {{ item.description }}
+<br>
+status: {{ item.status }}
+<br><br>
+{% endfor %}
+
+{% endblock conteudo %}
+
+
+{% block afterjs %}
+<!-- bootstrap 4.3.1 script -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<!-- fullcalendar scripts -->
+<script src="{% static 'fullcalendar/main.js' %}"></script>
+<script src="{% static 'fullcalendar/locales-all.js' %}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var calendarUl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarUl, {
+            headerToolbar: {
+                left: 'prev next today',
+                center: 'title',
+                right: 'dayGridMonth,listYear'
+            },
+
+            events: [
+                {% for reserva in object_list %}
+                    {
+                        title: '{{ reserva.title }} "editavel a beu prazer"',
+                        start: '{{ reserva.start|date:"Y-m-d H:i:s" }}',
+                        end: '{{ reserva.end|date:"Y-m-d H:i:s" }}',
+                        color: '{{ reserva.color|default:"#ffff00" }}',
+                    },
+                {% endfor %}
+            ],
+            /* Tratamento de erros */
+            extraParams: function () {
+                return {
+                    cachebuster: new Date().valueOf()
+                };
+            },
+        });
+
+        calendar.render();
+        calendar.setOption('locale', 'pt-br');
+    });
+</script>
+
+{% endblock afterjs %}

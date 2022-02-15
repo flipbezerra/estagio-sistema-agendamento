@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+
+{% load static %}
+
+
+{% block titulo %}
+
+<title>Listagem</title>
+
+{% endblock titulo %}
+
+
+{% block conteudo %}
+
+<h1 class="h3 mb-4 text-gray-800">Listagem-teste</h1>
+<hr>
+
+<!--
+para pegar um valor específico do array
+
+para ver a linha abaixo escreve: {{ object_list.values}}
+<QuerySet [ {'id': 14, 'nome' : 'Edjane4' , 'email' : 'exemplo2@email.com' , 'telefone' : '12345' , 'status' : 0}, {'id': 15, 'nome' : 'FREDERICO DE OLIVEIRA TAVARES' , 'email' : 'frewdtavares77@gmail.com' , 'telefone' : '68981009004' , 'status' : 0} ]>
+
+no exemplo acima a linha 0 = {'id': 14, 'nome': 'Edjane4', 'email': 'exemplo2@email.com', 'telefone': '12345', 'status': 0}
+o elemento object_list.0.id = 14
+no exemplo acima a linha 1 = {'id': 15, 'nome': 'FREDERICO DE OLIVEIRA TAVARES', 'email': 'frewdtavares77@gmail.com', 'telefone': '68981009004', 'status': 0}
+o elemento object_list.1.id = 15
+-->
+
+<div class="table-responsive">
+    <table class="table table-bordered" id="dataListagens" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Nome </th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th>Data</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for item in object_list %}
+            <tr>
+                <td scope="row">{{ item.nome }}</td>
+                <td>{{ item.email }}</td>
+                <td>{{ item.telefone }}</td>
+                <td>
+                    {{ item.dataPub|date:"d/m/Y H:i:s"|default:"---" }}
+                    <br>
+                    {{ item.dataPub }}
+                </td>
+                <td>
+                    <a href="{% url 'update' item.pk %}" class="btn btn-warning btn-sm"><i class="fa fa-pencil-alt" aria-hidden="true"></i></a>
+                    <a href="{% url 'deletar' item.pk %}" class="btn btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                </td>
+            </tr>
+            {% empty %}
+            Nada registrado
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock conteudo %}
+
+
+{% block afterjs %}
+
+<script>
+    $("select").change(function () {
+        $(this).parent().submit();
+    })
+</script>
+<script>
+    $(document).ready(function () {
+        var table = $('#dataListagens').DataTable({
+            lengthChange: false,
+            buttons: ['copy', 'excel', 'pdf', 'colvis']
+        });
+
+        table.buttons().container()
+            .appendTo('#dataListagens_wrapper .col-md-6:eq(0)');
+    });
+</script>
+
+{% endblock afterjs %}
