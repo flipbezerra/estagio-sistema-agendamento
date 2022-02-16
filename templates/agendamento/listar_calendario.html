@@ -13,8 +13,9 @@
 
 {% block aftercss %}
 
-<!-- bootstrap 4.3.1 css -->
+<!-- fullcalendar css -->
 <link href="{% static 'fullcalendar/main.css' %}" rel='stylesheet' />
+<!-- bootstrap 4.3.1 css -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 {% endblock aftercss %}
@@ -34,6 +35,9 @@ inicio/fim: {{ item.start }} || {{ item.end }}
 descrição: {{ item.description }}
 <br>
 status: {{ item.status }}
+<br>
+<a href="{% url 'updateEvent' item.pk %}" class="btn btn-warning btn-sm"><i class="fas fa-pen"></i> Editar</a> 
+<a href="  {% url 'deleteEvent' item.pk %} "><i class="fa fa-trash" aria-hidden="true"></i> Deletar</a> 
 <br><br>
 {% endfor %}
 
@@ -51,9 +55,9 @@ status: {{ item.status }}
         var calendarUl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarUl, {
             headerToolbar: {
-                left: 'prev next today',
+                left: 'prev,next today',
                 center: 'title',
-                right: 'dayGridMonth,listYear'
+                right: 'dayGridMonth,listMonth'
             },
 
             events: [
@@ -65,12 +69,49 @@ status: {{ item.status }}
                         color: '{{ reserva.color|default:"#ffff00" }}',
                     },
                 {% endfor %}
+
+                /* evento pra teste */
+                {
+                    title: 'Birthday Party',
+                    start: '2022-02-13T07:00:00',
+                    url: 'http://google.com/',
+                },
             ],
-            /* Tratamento de erros */
+            /* Mudando cor de fundo dos eventos */
+            eventDidMount: function (info) {
+                info.el.style.backgroundColor = 'lightgrey';
+            },
+            /* Cachebuster para imperdir problemas com cache caso use AJAX */
             extraParams: function () {
                 return {
                     cachebuster: new Date().valueOf()
                 };
+            },
+
+            /* EXEMPLOS */
+            /* teste do bootstrap nativo do full calendar
+            (temas possiveis= fc padrão, fc com bootstrap nativo, fc com bootstrap nativo e import do bootstrap 4, fc com import do bootstrap 4)
+            themeSystem: 'bootstrap',
+            */
+            /* Evento de clique - campo do calendario */
+            dateClick: function (info) {
+                alert(' Clicked on: ' + info.dateStr +
+                    '\n Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY +
+                    '\n Current view: ' + info.view.type);
+                // change the day's background color just for fun
+                info.dayEl.style.backgroundColor = 'red';
+            },
+            /* Evento de clique - evento do calendario */
+            eventClick: function (info) {
+                alert(' Clicked on: ' + info.dateStr +
+                    '\n Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY +
+                    '\n Current view: ' + info.view.type);
+                info.el.style.backgroundColor = 'black';
+                /* abri links dentro dos eventos em uma nova guia */
+                info.jsEvent.preventDefault();
+                if (info.event.url) {
+                    window.open(info.event.url);
+                }
             },
         });
 

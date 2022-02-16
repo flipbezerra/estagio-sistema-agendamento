@@ -5,8 +5,10 @@ from agendamento.views import (
     ClientesCad,
     ClientesUpdate,
     ClientesDelete,
-    EventsListagem,
-    EventsCad,
+    EventsList,
+    EventsCreate,
+    EventsUpdate,
+    EventsDelete,
 )
 
 # Create your views here.
@@ -16,6 +18,8 @@ urlpatterns = [
     path("cadastros/", ClientesCad.as_view(), name="cadastros"),
     path("update/<int:pk>", ClientesUpdate.as_view(), name="update"),
     path("deletar/<int:pk>", ClientesDelete.as_view(), name="deletar"),
-    path("calendario/", EventsListagem.as_view(), name="calendario"),
-    path("addCalendario/", EventsCad.as_view(), name="addCalendario"),
+    path("calendario/", EventsList.as_view(), name="calendario"),
+    path("addEvent/", EventsCreate.as_view(), name="addEvent"),
+    path("updateEvent/<int:pk>", EventsUpdate.as_view(), name="updateEvent"),
+    path("deleteEvent/<int:pk>", EventsDelete.as_view(), name="deleteEvent"),
 ]

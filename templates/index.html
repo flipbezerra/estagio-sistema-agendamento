@@ -34,12 +34,12 @@
 <script src="{% static 'fullcalendar/locales-all.js' %}"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        var calendarUl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarUl, {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
             headerToolbar: {
-                left: 'prev, next, today',
+                left: 'prev,next today',
                 center: 'title',
-                right: 'dayGridMonth, listYear'
+                right: 'dayGridMonth,listYear'
             },
         });
 

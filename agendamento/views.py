@@ -9,40 +9,55 @@ def abertura_modelform(request):
     return render(request, "index.html")
 
 
-class EventsListagem(ListView):
-    model = Events
-    template_name = "cadastros/listar_calendario.html"
-
-
-class EventsCad(CreateView):
+class EventsCreate(CreateView):
     model = Events
     fields = ["title", "description", "status"]
-    template_name = "cadastros/cadastros_calendario.html"
+    template_name = "agendamento/gerenciar_evento.html"
+    success_url = reverse_lazy("calendario")
+
+
+class EventsList(ListView):
+    model = Events
+    template_name = "agendamento/listar_calendario.html"
+
+
+class EventsUpdate(UpdateView):
+    model = Events
+    fields = ["title", "description", "status"]
+    template_name = "agendamento/gerenciar_evento.html"
+    success_url = reverse_lazy("calendario")
+
+
+class EventsDelete(DeleteView):
+    model = Events
+    template_name = "agendamento/deletar_evento.html"
     success_url = reverse_lazy("calendario")
 
 
 # pagina cadastro - C
 class ClientesCad(CreateView):
     model = Clientes
-    fields = ['nome','email','telefone'] 
-    template_name = 'cadastros/index_cadastros.html'
-    success_url = reverse_lazy('listagem')
+    fields = ["nome", "email", "telefone"]
+    template_name = "cadastros/index_cadastros.html"
+    success_url = reverse_lazy("listagem")
 
-# pagina listagem - R     
+
+# pagina listagem - R
 class ClientesListagem(ListView):
     model = Clientes
-    template_name = 'cadastros/listar_cadastros.html'
+    template_name = "cadastros/listar_cadastros.html"
 
-# pagina editar - U  
+
+# pagina editar - U
 class ClientesUpdate(UpdateView):
     model = Clientes
-    fields = ['nome','email','telefone']  
-    template_name = 'cadastros/index_cadastros.html'
-    success_url = reverse_lazy('listagem')
+    fields = ["nome", "email", "telefone"]
+    template_name = "cadastros/index_cadastros.html"
+    success_url = reverse_lazy("listagem")
 
-#pagina deletar - D
+
+# pagina deletar - D
 class ClientesDelete(DeleteView):
     model = Clientes
-    template_name = 'cadastros/excluir_cadastros.html'
-    success_url = reverse_lazy('listagem')
-
+    template_name = "cadastros/excluir_cadastros.html"
+    success_url = reverse_lazy("listagem")

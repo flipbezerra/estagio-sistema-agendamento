@@ -68,7 +68,7 @@
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Cadastros Gerais:</h6>
                             <a class="collapse-item" href="{% url 'cadastros' %}">Alunos-test</a>
-                            <a class="collapse-item" href="{% url 'addCalendario' %}">Eventos</a>
+                            <a class="collapse-item" href="{% url 'addEvent' %}">Eventos</a>
                         </div>
                     </div>
                 </li>
@@ -225,7 +225,9 @@
         <script src={% static "vendor/chart.js/Chart.min.js" %}></script>
         <!-- Page level custom scripts -->
         <script src={% static "js/demo/chart-area-demo.js" %}></script>
-        <!-- <script src={% static "js/demo/chart-pie-demo.js" %}></script> -->
+        <!-- 
+        <script src={% static "js/demo/chart-pie-demo.js" %}></script> 
+        -->
 
         <!-- datatables -->
         <script src={% static "js/demo/chart-bar-demo.js" %}></script>

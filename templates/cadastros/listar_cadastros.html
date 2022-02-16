@@ -45,15 +45,15 @@ o elemento object_list.1.id = 15
             <tr>
                 <td scope="row">{{ item.nome }}</td>
                 <td>{{ item.email }}</td>
-                <td>{{ item.telefone }}</td>
+                <td>{{ item.telefone|default:"---" }}</td>
                 <td>
                     {{ item.dataPub|date:"d/m/Y H:i:s"|default:"---" }}
-                    <br>
+                    <br><br>
                     {{ item.dataPub }}
                 </td>
                 <td>
-                    <a href="{% url 'update' item.pk %}" class="btn btn-warning btn-sm"><i class="fa fa-pencil-alt" aria-hidden="true"></i></a>
-                    <a href="{% url 'deletar' item.pk %}" class="btn btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                    <a href="{% url 'update' item.pk %}" class="btn btn-warning btn-sm"><i class="fas fa-pen"></i> Editar</a>
+                    <a href="  {% url 'deletar' item.pk %} "><i class="fa fa-trash" aria-hidden="true"></i> Deletar</a>
                 </td>
             </tr>
             {% empty %}
