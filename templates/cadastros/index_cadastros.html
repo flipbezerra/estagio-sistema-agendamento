@@ -18,9 +18,6 @@
 
 {% if object.pk %}
 <h1 class="h3 mb-4 text-gray-800">Editando Cadastro</h1>
-{% else %}
-<h1 class="h3 mb-4 text-gray-800">Cadastro</h1>
-{% endif %}
 
 <form method="POST" action="">
     {% csrf_token %}
@@ -28,14 +25,42 @@
     {{ form | crispy }}
 
     <div class="text-right">
-
-        {% if object.pk %}
         <button type="submit" class="save btn btn-warning">Salvar Edição</button>
-        {% else %}
-        <button type="submit" class="save btn btn-success">Salvar Cadastro</button>
-        {% endif %}
-
     </div>
 </form>
+
+{% else %}
+
+<!-- Button to Open the Modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+    Modal-Exemplo
+</button>
+
+<form action="" method="POST">
+    <!-- The Modal -->
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h2 class="h3 text-gray-800">Cadastro</h2>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    {% csrf_token %}
+
+                    {{ form | crispy }}
+                </div>
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="submit" class="save btn btn-success">Salvar Cadastro</button>
+
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+{% endif %}
 
 {% endblock conteudo %}

@@ -21,7 +21,7 @@
 
 {% block conteudo %}
 
-<h1 class="h3 mb-4 text-gray-800">Testando... FullCalendar com b4</h1>
+<h1 class="h3 mb-4 text-gray-800">Testando... FullCalendar</h1>
 <!-- calendario -->
 <div id="calendar" class="card" style="pading: 2%"></div>
 <!-- checar valores -->
@@ -34,8 +34,8 @@ descrição: {{ item.description }}
 <br>
 status: {{ item.status }}
 <br>
-<a href="{% url 'updateEvent' item.pk %}" class="btn btn-warning btn-sm"><i class="fas fa-pen"></i> Editar</a> 
-<a href="  {% url 'deleteEvent' item.pk %} "><i class="fa fa-trash" aria-hidden="true"></i> Deletar</a> 
+<a href="{% url 'updateEvent' item.pk %}" class="btn btn-warning btn-sm"><i class="fas fa-pen"></i> Editar</a>
+<a href="  {% url 'deleteEvent' item.pk %} "><i class="fa fa-trash" aria-hidden="true"></i> Deletar</a>
 <br><br>
 {% endfor %}
 

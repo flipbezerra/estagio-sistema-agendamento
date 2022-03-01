@@ -12,7 +12,7 @@ class Clientes(models.Model):
 
 
 class Events(models.Model):
-    title = models.CharField(max_length=50)
+    title = models.CharField("Espaço", max_length=50)
     color = models.CharField(max_length=10, default="#FFD700")
     start = models.DateTimeField(auto_now_add=True)
     end = models.DateTimeField(auto_now_add=True)
