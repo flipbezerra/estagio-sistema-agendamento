@@ -1,0 +1,42 @@
+*PAGINAS Á ADICIONAR*
+
+1. CALENDARIO 
+	1. mostrando todos os agendamentos, mas contendo filtro para cada area reservada (se possivel um que possa escolher mais de uma)
+
+2. LISTA DE AGENDAMENTOS 
+
+3. LISTA DE USUARIOS 
+	1. com link para modais contendo informações do usuario escolhido
+	2 .dentro do modal de cada usuario sendo possivel excluir o usuario do sistema
+
+
+*PERMISSÕES*
+
+1. PERMISSÕES DO USUARIO
+	1. visualizar CALENDARIO com agendamentos aprovados
+	2. visualizar LISTA DE AGENDAMENTOS com agendamentos feito por si proprio
+	3. adicionar agendamento
+	4. editar e apagar agendamento criado por si proprio
+	5. editar suas informações de usuario
+
+2. PERMISSÕES DE ADMINISTRADOR 
+	1. visualizar CALENDARIO com todos os agendamentos
+	2. visualizar LISTA DE AGENDAMENTOS com todos os agendamentos feitos
+	3. adicionar agendamento
+	4. editar e apagar agendamento criado por si proprio
+	5. aprovar ou negar agendamentos
+	6. excluir usuarios
+
+*VERIFICAÇÕES*
+#dentro de adicionar e editar agendamentos 
+	if ("fim" > "inicio")
+		ERRO
+	else if ("inicio" > "agora")
+
+		ERRO
+	else
+		RODAR
+
+#não cadastrar usuario ou agendamento com mesmos dados
+#apagar eventos NÃO APROVADOS antes de "hoje"
+
