@@ -1,6 +1,5 @@
 # Projeto-Agendamento-Python
-Esse projeto consiste em um projeto de Agendamento de espaços na Universidade Federal do Acre (quadras, auditórios, laboratórios).
-O projeto anterior foi realizado na linguagem PHP, e agora o código dele será adaptado para a linguagem Python sob o framework Django.
-Além de adaptar o projeto, serão implementadas novas funcionalidades:
-- Envio de email para os usuários que solicitaram um agendamento confirmando se o mesmo foi aprovado ou rejeitado.
-- Adição de espaço para identificação de discente/docente no formulário de solicitação e verificação dessa identificação.
+Este projeto consiste na adaptação de uma aplicação web anteriormente desenvolvida em PHP puro, para o framework back-end Django. O projeto tem como objetivo facilitar o processo de agendar a utilização de espaços físicos da Universidade Federal do Acre. Os integrantes da equipe foram os alunos do curso de Bacharelado em Sistemas de Informação, Felipe Bezerra Lima e Victor Alexandre de Lima Ribeiro.
+Além de adaptar o projeto, serão implementadas novas funcionalidades futuramente:
+- Envio de email para os usuários que solicitaram um agendamento confirmando a resposta à solicitação.
+- Implementação de espaço para identificação obrigatória de discente/docente no formulário de solicitação de espaço.
